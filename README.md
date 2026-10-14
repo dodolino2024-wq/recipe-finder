@@ -2,7 +2,7 @@
 
 A simple website that helps you discover recipes and find something delicious to cook!
 
-🌐 **[Try Recipe Finder+](dodolino2024-wq.github.io/recipe-finder/)**
+🌐 **[Try Recipe Finder+](https://dodolino2024-wq.github.io/recipe-finder/)**
 
 ## ✨ Features
 
