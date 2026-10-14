@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17142a">
+  <title>Recipe Finder+</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#">
+    <span class="brand-icon">🍳</span>
+    <span>Recipe Finder<span class="brand-plus">+</span></span>
+  </a>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <p class="eyebrow">YOUR NEXT FAVOURITE MEAL</p>
+    <h1>What are we <span>cooking?</span></h1>
+    <p class="hero-description">
+      Find recipes by name, ingredient, cuisine, or category.
+    </p>
+
+    <form id="search-form" class="search-panel">
+      <div class="search-input-wrap">
+        <span class="search-icon">⌕</span>
+        <input
+                id="ingredient"
+                name="query"
+                type="search"
+                placeholder="Try chicken, pasta, tomato..."
+                autocomplete="off"
+        >
+      </div>
+
+      <select id="search-mode" aria-label="Search mode">
+        <option value="name">Recipe name</option>
+        <option value="ingredient">Ingredient</option>
+      </select>
+
+      <button class="button button-primary" type="submit">Search recipes</button>
+    </form>
+
+    <div class="quick-searches">
+      <span>Try:</span>
+      <button type="button" class="chip quick-query" data-query="chicken">🍗 Chicken</button>
+      <button type="button" class="chip quick-query" data-query="pasta">🍝 Pasta</button>
+      <button type="button" class="chip quick-query" data-query="potato">🥔 Potato</button>
+      <button type="button" class="chip quick-query" data-query="chocolate">🍫 Chocolate</button>
+      <button type="button" class="chip quick-query" data-query="rice">🍚 Rice</button>
+    </div>
+  </section>
+
+  <section class="workspace">
+    <aside class="filters">
+      <div class="filters-heading">
+        <h2>Filters</h2>
+        <button type="button" id="reset-filters" class="text-button">Reset</button>
+      </div>
+
+      <label class="field-label" for="cuisine-filter">Cuisine</label>
+      <select id="cuisine-filter">
+        <option value="">Any cuisine</option>
+        <option>American</option>
+        <option>British</option>
+        <option>Canadian</option>
+        <option>Chinese</option>
+        <option>Croatian</option>
+        <option>Dutch</option>
+        <option>Egyptian</option>
+        <option>Filipino</option>
+        <option>French</option>
+        <option>Greek</option>
+        <option>Indian</option>
+        <option>Irish</option>
+        <option>Italian</option>
+        <option>Jamaican</option>
+        <option>Japanese</option>
+        <option>Kenyan</option>
+        <option>Malaysian</option>
+        <option>Mexican</option>
+        <option>Moroccan</option>
+        <option>Polish</option>
+        <option>Portuguese</option>
+        <option>Russian</option>
+        <option>Spanish</option>
+        <option>Thai</option>
+        <option>Tunisian</option>
+        <option>Turkish</option>
+        <option>Ukrainian</option>
+        <option>Vietnamese</option>
+      </select>
+
+      <label class="field-label" for="category-filter">Category</label>
+      <select id="category-filter">
+        <option value="">Any category</option>
+        <option>Beef</option>
+        <option>Breakfast</option>
+        <option>Chicken</option>
+        <option>Dessert</option>
+        <option>Goat</option>
+        <option>Lamb</option>
+        <option>Miscellaneous</option>
+        <option>Pasta</option>
+        <option>Pork</option>
+        <option>Seafood</option>
+        <option>Side</option>
+        <option>Starter</option>
+        <option>Vegan</option>
+        <option>Vegetarian</option>
+      </select>
+
+      <label class="field-label" for="diet-filter">Diet</label>
+      <select id="diet-filter">
+        <option value="">Any diet</option>
+        <option value="vegetarian">Vegetarian</option>
+        <option value="vegan">Vegan</option>
+        <option value="meat">Contains meat</option>
+      </select>
+
+      <label class="field-label" for="time-filter">Maximum cooking time</label>
+      <select id="time-filter">
+        <option value="">Any duration</option>
+        <option value="15">15 minutes</option>
+        <option value="30">30 minutes</option>
+        <option value="45">45 minutes</option>
+        <option value="60">60 minutes</option>
+      </select>
+
+      <label class="field-label" for="ingredient-filter">Must include</label>
+      <input id="ingredient-filter" type="text" placeholder="e.g. garlic">
+
+      <label class="field-label" for="exclude-filter">Exclude ingredient</label>
+      <input id="exclude-filter" type="text" placeholder="e.g. onion">
+
+      <label class="field-label" for="sort-filter">Sort results</label>
+      <select id="sort-filter">
+        <option value="relevance">Most relevant</option>
+        <option value="name">Name A–Z</option>
+        <option value="time">Fastest first</option>
+        <option value="rating">Highest rating</option>
+      </select>
+
+      <button type="button" id="clear-button" class="button button-secondary button-full">
+        Clear search
+      </button>
+    </aside>
+
+    <section class="results-section">
+      <div class="results-header">
+        <div>
+          <p class="eyebrow">DISCOVER SOMETHING DELICIOUS</p>
+          <h2 id="results-title">Explore recipes</h2>
+          <p id="results-subtitle" class="muted">
+            Search to find your next meal.
+          </p>
+        </div>
+        <button type="button" id="random-button" class="button button-secondary">
+          ✨ Surprise me
+        </button>
+      </div>
+
+      <div id="status" class="status" role="status" aria-live="polite">
+        Ready when you are.
+      </div>
+
+      <p id="result-count" class="result-count"></p>
+      <div id="results" class="recipe-grid"></div>
+
+      <button type="button" id="load-more" class="button button-secondary load-more" hidden>
+        Load more
+      </button>
+    </section>
+  </section>
+</main>
+
+<dialog id="recipe-dialog" class="recipe-dialog">
+  <button type="button" id="close-dialog" class="dialog-close" aria-label="Close recipe">✕</button>
+  <div id="recipe-details"></div>
+</dialog>
+
+<footer class="footer">
+  <p>Recipe data provided by TheMealDB and DummyJSON.</p>
+</footer>
+</body>
+</html>
